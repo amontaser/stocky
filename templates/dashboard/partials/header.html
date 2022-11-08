@@ -1,0 +1,118 @@
+{% load static i18n%}
+<header id="page-topbar">
+	<div class="navbar-header">
+		<div class="d-flex">
+			<!-- LOGO -->
+			<div class="navbar-brand-box">
+				<a href="{% url 'dashboard:index' %}" class="logo logo-dark">
+					<span class="logo-sm">
+						<img src="{% static 'dashboard/images/logo/logo-dark-sm.svg'%}" alt="" height="28">
+					</span>
+					<span class="logo-lg">
+						<img src="{% static 'dashboard/images/logo/logo-dark.svg'%}" alt="" height="30">
+					</span>
+				</a>
+
+				<a href="{% url 'dashboard:index' %}" class="logo logo-light">
+					<span class="logo-sm">
+						<img src="{% static 'dashboard/images/logo/logo-light-sm.svg'%}" alt="" height="28">
+					</span>
+					<span class="logo-lg">
+						<img src="{% static 'dashboard/images/logo/logo-light.svg'%}" alt="" height="30">
+					</span>
+				</a>
+			</div>
+
+			<button type="button" class="btn btn-sm px-3 font-size-16 header-item " id="vertical-menu-btn">
+				<i class="fal fa-bars"></i>
+			</button>
+
+			<form class="app-search d-none d-md-block">
+				<div class="position-relative">
+					<input type="text" class="form-control" placeholder="Search..." autocomplete="off"
+						id="search-options" value="">
+					<span class="fal  fa-search"></span>
+				</div>
+
+			</form>
+
+		</div>
+
+		<div class="d-flex">
+			{% comment %} <div class="d-none d-sm-block" bis_skin_checked="1">
+				<div class=" pt-3 d-inline-block" bis_skin_checked="1">
+					<a class="btn btn-primary " href="#" role="button" aria-haspopup="true" aria-expanded="false">
+						<i class="fal  fa-cash-register me-2 "></i>POS
+					</a>
+				</div>
+			</div> {% endcomment %}
+			{% comment %} <div class="dropdown d-inline-block">
+				{% get_current_language as LANGUAGE_CODE %}
+				{% get_available_languages as LANGUAGES %}
+				{% get_language_info_list for LANGUAGES as languages %}
+				<button type="button" class="btn header-item " data-bs-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">
+					<img id="header-lang-img"
+						src="{% static 'dashboard/images/flags/'|add:request.LANGUAGE_CODE|add:'.png' %}"
+						alt="Header Language" height="16">
+					<span><i class="fa-solid fa-earth-africa fa-2xl"></i></span>
+				</button>
+				<div class="dropdown-menu dropdown-menu-end" style="">
+					{% for language in languages %}
+					<a href="/{{ language.code }}{{ request.get_full_path|slice:'3:' }}"
+						class="dropdown-item notify-item language" data-lang="{{ language.code }}">
+						<img src="{% static 'dashboard/images/flags/'|add:language.code|add:'.png' %}" alt="user-image"
+							class="me-1" height="16"> <span class="align-middle">{{ language.name_local }}</span>
+					</a>
+					{% endfor %}
+				</div> {% endcomment %}
+
+				{% get_current_language as LANGUAGE_CODE %}
+				<div class=" d-inline-block">
+					{% if LANGUAGE_CODE == "en" %}
+					<button onclick="location.href='/ar{{ request.get_full_path|slice:'3:' }}'"
+						class="btn btn-link text-decoration-none header-item  " data-lang="ar">
+						<img src="{% static 'dashboard/images/translation.svg' %}" alt="switch" title="التغيير الى العربية"
+							width="28">
+					</button>
+					{% else %}
+					<button onclick="location.href='/en{{ request.get_full_path|slice:'3:' }}'"
+						class="btn btn-link text-decoration-none header-item  " data-lang="en">
+						<img src="{% static 'dashboard/images/translation.svg' %}" alt="switch" title="Switch to English"
+							width="28">
+					</button>
+					{% endif %}
+				</div>
+
+				<div class="dropdown d-inline-block ">
+					<button type="button" class="btn header-item " id="page-header-user-dropdown noti-icon"
+						data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+						<span class="d-flex align-items-center">
+
+							<img class="rounded-circle header-profile-user"
+								src="{{request.user.profile.image.url|default_if_none:'#'}}" alt="{{request.user.get_full_name}} Avatar">
+							<span class="text-start">
+								<span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"
+									key="t-henry">{{ request.user.get_full_name }}</span>
+									<span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{{ request.user.role }}</span>
+									</span>
+									<span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-primary p-1" style="top: unset;">10</span>
+						</span>
+					</button>
+					<div class="dropdown-menu dropdown-menu-end">
+						<!-- item-->
+						<a class="dropdown-item" href="{% url 'users:user_detail' request.user.id %}"><i
+								class="fal fa-user font-size-16 align-middle me-1"></i> <span
+								key="t-profile">Profile</span></a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item " href="{% url 'account_logout' %}"><i
+								class="fal fa-power-off  font-size-16 align-middle me-1 "></i> <span
+								key="t-logout">Logout</span></a>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+</header>

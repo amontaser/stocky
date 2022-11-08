@@ -1,0 +1,74 @@
+{% extends "dashboard/layout/base.html" %}
+{% load static i18n %}
+{% load sitetree %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar">
+    <div class="container" bis_skin_checked="1">
+        <a class="navbar-brand" href="{% url 'landing:index' %}" bis_skin_checked="1">
+            <img src="{% static 'dashboard/images/logo/logo.svg' %}" class="card-logo card-logo-dark" alt="logo dark" height="30">
+        </a>
+        <button class="navbar-toggler py-0 fs-20 text-body collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="mdi mdi-menu"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" bis_skin_checked="1">
+            <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#hero" bis_skin_checked="1">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#plans" bis_skin_checked="1">Plans</a>
+                </li>
+            </ul>
+
+            <div class="" bis_skin_checked="1">
+            {% if user.is_authenticated %}
+                <div class="dropdown d-inline-block">
+                    <button type="button" class="btn header-item waves-effect" id="defualtDropdown"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="d-none d-xl-inline-block ms-1" key="t-henry">Welcome! {{request.user.get_full_name}}</span>
+                        <i class="fal fa-chevron-down  d-none d-xl-inline-block"></i>
+                    </button>
+                    <div class="dropdown-menu ">
+                        <!-- item-->
+                        <a class="dropdown-item" href="{% url 'dashboard:index' %}" class="text-info"> <span key="t-dashboard">{% trans "Dashboard" %}</span></a>
+                        <a class="dropdown-item" href="{% url 'users:user_detail' user.id %}"> <span key="t-profile">Profile</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-danger" href="{% url 'account_logout' %}"> <span key="t-logout">Logout</span></a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'account_login' %}" type="button" class="btn btn-link fw-medium text-decoration-none text-dark">{% trans "Login" %}</a>
+                <a href="{% url 'account_signup' %}" type="button" class="btn btn-primary waves-effect waves-light">{% trans "Register" %}</a>
+            {% endif %}
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<section class="my-5">
+    <div class="container-alt container">
+        <div class="row justify-content-center">
+            <div class="col-10 text-center">    
+                <div class="home-wrapper mt-5">
+                    <div class="maintenance-img">
+                        {% if user.is_authenticated %}
+                            <img src="{% static 'dashboard/images/Hi-Five.svg' %}" alt="" class="img-fluid mx-auto d-block" width="300">
+                            <h6 class="mt-2">{% trans "Hello" %} <span class="text-info">{{request.user.get_full_name}}</span> {% trans "Plese access your dashboard from here" %}<span><a href="{% url 'dashboard:index' %}" class="text-info"> {% trans "Dashboard" %}</a></span></h6>
+                        {% else %}
+                            <img src="{% static 'dashboard/images/Hello.svg' %}" alt="" class="img-fluid mx-auto d-block" width="300">
+                            <h6 class="mt-2">{% trans "Hello There , Please login in or register" %}</h6>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content%}

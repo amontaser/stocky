@@ -1,0 +1,116 @@
+{% extends "dashboard/layout/base_admin.html" %}
+{% load static i18n %}
+{% load sitetree %}
+{% block pagetitlebox %}
+<div class="row" bis_skin_checked="1">
+	<div class="col-12" bis_skin_checked="1">
+		<div class="page-title-box d-sm-flex align-items-center justify-content-between" bis_skin_checked="1">
+			<h4 class="mb-sm-0">{{ page_title }}</h4>
+			<div class="page-title-right" bis_skin_checked="1">
+				<ol class="breadcrumb m-0">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
+					<li class="breadcrumb-item active"><a href="javascript: void(0);">{% trans page_title %}</a></li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock pagetitlebox %}
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card" id="invoiceList">
+			<div class="card-header">
+				<div class="d-flex align-items-center">
+					<h5 class="card-title mb-0 flex-grow-1">{% trans "Suppliers" %}</h5>
+					<div class="flex-shrink-0">
+						<a href="{% url 'suppliers:create' %}" class="btn btn-primary"><i
+								class="fal  fa-plus-square me-2"></i>{% trans "Create Supplier" %}</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-body">
+				<div class="table caption-top table-striped  nowrap  ">
+					<table class="table mb-0">
+						<thead class="table-light">
+							<tr>
+								<th>#</th>
+								<th>{% trans "Supplier Name" %}</th>
+								<th>{% trans "Owner" %}</th>
+								<th>{% trans "Full Domain" %}</th>
+								<th>{% trans "Is Active" %}</th>
+								<th>{% trans "Is Ready" %}</th>
+								<th>{% trans "Created At" %}</th>
+								<th>{% trans "Action" %}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for supplier in object_list %}
+							<tr>
+								<th scope="row">{{ forloop.counter }}</th>
+								<td><a class="fw-medium" href="{{supplier.get_absolute_url}}" rel="noopener noreferrer">{{ supplier.name }}</a></td>
+								<td><a class="fw-medium" href="{% url  'users:user_detail' supplier.owner_id %}" rel="noopener noreferrer">{{ supplier.owner_id }}</a></td>
+								<td>{{ supplier.domain_url }}</td>
+								<td>
+									<span class="badge {% if supplier.is_active %}badge-soft-success{% else %}badge-soft-danger{% endif %}">{% if supplier.is_active %}yes{% else %}no{% endif %}</span>
+								</td>
+								<td>
+									
+									<span class="badge {% if supplier.is_ready %}badge-soft-success{% else %}badge-soft-danger{% endif %}">{% if supplier.is_ready %}yes{% else %}no{% endif %}</span>
+								</td>
+								<td>{{ supplier.created_at }}</td>
+								<td>
+								
+									<div class="hstack gap-3 fs-15" bis_skin_checked="1">
+	
+									<a href="{% url 'suppliers:detail' supplier.pk%}"  class="link-primary" ><i class="fal fa-eye"></i></a>
+									<a href="{% url 'suppliers:update' supplier.pk %}"  class="link-primary"><i class="fal fa-pen fa-xs "></i></a>
+									<a href="{% url 'suppliers:delete' supplier.pk%}"  class="link-primary"><i class="fal fa-trash"></i></a>
+								</div></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+									
+				</div>
+				<div class="dataTables_paginate paging_simple_numbers">
+					{% if page_obj.has_other_pages %}
+					<ul class="pagination">
+						{% if page_obj.has_previous %}
+						<li class="paginate_button page-item previous" id="datatable-buttons_previous"><a
+								aria-controls="datatable-buttons" href="?page={{ page_obj.previous_page_number }}"
+								class="page-link">&laquo;</a></li>
+						{% else %}
+						<li class="paginate_button page-item previous disabled" id="datatable-buttons_previous"><a
+								aria-controls="datatable-buttons" href="#" class="page-link">&laquo;</a></li>
+						{% endif %}
+						{% for i in page_obj.paginator.page_range %}
+						{% if page_obj.number == i %}
+						<li class="paginate_button page-item active"><a a href="#" aria-controls="datatable-buttons"
+								data-dt-idx="1" tabindex="0" class="page-link">{{ i }}</a></li>
+						{% else %}
+						<li class="paginate_button page-item"><a href="?page={{ i }}" aria-controls="datatable-buttons"
+								data-dt-idx="1" tabindex="0" class="page-link">{{ i }}</a></li>
+						{% endif %}
+						{% endfor %}
+						{% if page_obj.has_next %}
+						<li class="paginate_button page-item next" id="datatable-buttons_next"><a
+								href="?page={{ page_obj.next_page_number }}" aria-controls="datatable-buttons"
+								data-dt-idx="7" tabindex="0" class="page-link">&raquo;</a></li>
+						{% else %}
+						<li class="paginate_button page-item next disabled" id="datatable-buttons_next"><a href="#"
+								aria-controls="datatable-buttons" data-dt-idx="7" tabindex="0"
+								class="page-link">&raquo;</a></li>
+						{% endif %}
+					</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--end col-->
+</div>
+{% endblock content%}

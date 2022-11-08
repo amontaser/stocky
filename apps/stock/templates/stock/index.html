@@ -1,0 +1,109 @@
+{% extends "dashboard/layout/base_admin.html" %}
+{% load static i18n %}
+{% load sitetree %}
+{% block pagetitlebox %}
+<div class="row" bis_skin_checked="1">
+	<div class="col-12" bis_skin_checked="1">
+		<div class="page-title-box d-sm-flex align-items-center justify-content-between" bis_skin_checked="1">
+			<ol class="breadcrumb m-0">
+				<li class="breadcrumb-item">
+					<h4 class="mb-sm-0"><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></h4>
+				</li>
+				<li class="breadcrumb-item active"><a href="javascript: void(0);">{% trans page_title %}</a></li>
+			</ol>
+		</div>
+	</div>
+</div>
+{% endblock pagetitlebox %}
+{% block content %}
+<div class="row">
+	<div class="col-xxl-8 col-lg-12 col-md-12 col-sm-12">
+		<div class="d-flex flex-column h-100">
+			<div class="row pb-1">
+				<div class="col-12">
+					<div class="d-flex align-items-lg-center flex-lg-row flex-column">
+						<div class="flex-grow-1">
+							<h6 class="fs-16 ">{% trans "Your Shortcuts" %}</h6>
+						</div>
+					</div><!-- end card header -->
+				</div>
+				<!--end col-->
+			</div>
+			<div class="row">
+				<div class="col-xl-4 col-md-6">
+					<a href="#">
+						<div class="card card-height-100">
+							<div class="card-body">
+								<div class="d-flex align-items-center">
+
+									<div class="flex-grow-1 ms-3">
+										<p class="text-uppercase fw-bolder  m-0">Number of Users</p>
+									</div>
+									<div class="flex-shrink-0 align-self-center">
+										<span class="badge rounded-pill bg-primary fs-12"><i
+												class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>0
+											Available<span>
+											</span></span>
+									</div>
+								</div>
+							</div><!-- end card body -->
+						</div>
+					</a>
+				</div>
+				<div class="col-xl-4 col-md-6">
+					<a href="#">
+						<div class="card card-height-100">
+							<div class="card-body">
+								<div class="d-flex align-items-center">
+
+									<div class="flex-grow-1 ms-3">
+										<p class="text-uppercase fw-bolder  m-0">Number of Users</p>
+									</div>
+									<div class="flex-shrink-0 align-self-center">
+										<span class="badge rounded-pill bg-primary fs-12"><i
+												class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>0
+											Available<span>
+											</span></span>
+									</div>
+								</div>
+							</div><!-- end card body -->
+						</div>
+					</a>
+				</div>
+				<div class="col-xl-4 col-md-6">
+					<a href="#">
+						<div class="card card-height-100">
+							<div class="card-body">
+								<div class="d-flex align-items-center">
+
+									<div class="flex-grow-1 ms-3">
+										<p class="text-uppercase fw-bolder  m-0">Number of Users</p>
+									</div>
+									<div class="flex-shrink-0 align-self-center">
+										<span class="badge rounded-pill bg-primary fs-12"><i
+												class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>0
+											Available<span>
+											</span></span>
+									</div>
+								</div>
+							</div><!-- end card body -->
+						</div>
+					</a>
+				</div>
+
+			</div>
+			<div class="row pb-1">
+				<div class="col-12">
+					<div class="d-flex align-items-lg-center flex-lg-row flex-column">
+						<div class="flex-grow-1">
+							<h6 class="fs-16 ">{% trans "Apps" %}</h6>
+						</div>
+					</div><!-- end card header -->
+				</div>
+				<!--end col-->
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content%}

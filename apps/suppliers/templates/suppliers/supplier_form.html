@@ -1,0 +1,60 @@
+{% extends "dashboard/layout/base_admin.html" %}
+{% load static i18n %}
+{% load sitetree %}
+{% block pagetitlebox %}
+<div class="row" bis_skin_checked="1">
+    <div class="col-12" bis_skin_checked="1">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between" bis_skin_checked="1">
+            <h4 class="mb-sm-0">{{ page_title }}</h4>
+            <div class="page-title-right" bis_skin_checked="1">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'tenants:list' %}">{% trans "Tenants" %}</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript: void(0);">{% trans page_title %}</a></li>
+
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock pagetitlebox %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card" id="invoiceList">
+            <div class="card-header align-items-center d-flex">
+                <h5 class="card-title mb-0 flex-grow-1">{% trans page_title %}</h5>
+            </div>
+
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>{% csrf_token %}
+                    <div class="row" bis_skin_checked="1">
+                        {% for field in form %}
+                        <div class="col-md-4" bis_skin_checked="1">
+                            <div class="mb-3" bis_skin_checked="1">
+                                <label for="firstNameinput" class="form-label">{{ field.label_tag }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                    <div class="error list-unstyled">
+                                        {{ field.errors.as_text  }}
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!--end col-->
+                        {% endfor %}
+                        <!--end col-->
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--end col-->
+</div>
+{% endblock content%}

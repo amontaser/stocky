@@ -1,0 +1,57 @@
+{% extends "dashboard/layout/base_admin.html" %}
+
+{% load static i18n %}
+{% load sitetree %}
+{% block pagetitlebox %}
+<li class="breadcrumb-item active"><a href="javascript: void(0);">{% trans page_title %}</a></li>
+{% endblock pagetitlebox %}
+{% block content %}
+
+<div class="row">
+	<div class="col-xxl-6 col-lg-6 col-md-6 col-sm-6">
+		<div class="d-flex flex-column h-100">
+			<div class="row">
+				<div class="col-lg-6 col-md-6" bis_skin_checked="1">
+					<div class="card card-animate" bis_skin_checked="1">
+						<div class="card-body" bis_skin_checked="1">
+							<div class="d-flex justify-content-between" bis_skin_checked="1">
+								<div bis_skin_checked="1">
+									<p class="fw-medium text-muted mb-0">{% trans "Users Count" %}</p>
+									<h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value"
+											data-target="{{ user_count }}">{{ user_count }}</span>k</h2>
+								</div>
+								<div bis_skin_checked="1">
+									<div class="avatar-sm flex-shrink-0" bis_skin_checked="1">
+										<span class="avatar-title bg-soft-info rounded-circle fs-2">
+											<i class="fal fa-users"></i></span>
+									</div>
+								</div>
+							</div>
+						</div><!-- end card body -->
+					</div> <!-- end card-->
+				</div>
+				<div class="col-lg-6 col-md-6" bis_skin_checked="1">
+					<div class="card card-animate" bis_skin_checked="1">
+						<div class="card-body" bis_skin_checked="1">
+							<div class="d-flex justify-content-between" bis_skin_checked="1">
+								<div bis_skin_checked="1">
+									<p class="fw-medium text-muted mb-0">{% trans "Tenants Count" %}</p>
+									<h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value"
+											data-target="{{ user_count }}">{{ user_count }}</span>k</h2>
+								</div>
+								<div bis_skin_checked="1">
+									<div class="avatar-sm flex-shrink-0" bis_skin_checked="1">
+										<span class="avatar-title bg-soft-info rounded-circle fs-2">
+											<i class="fal fa-buildings"></i></span>
+									</div>
+								</div>
+							</div>
+						</div><!-- end card body -->
+					</div> <!-- end card-->
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+{% endblock content%}

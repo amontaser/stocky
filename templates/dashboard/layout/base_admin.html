@@ -1,0 +1,45 @@
+{% load static i18n%}
+{% load sitetree %}
+<!doctype html>
+{% include "dashboard/partials/head.html" %}
+
+<body data-sidebar="dark">
+	<!-- <body data-layout="horizontal" data-topbar="dark"> -->
+	<!-- Begin page -->
+	<div id="layout-wrapper">
+		{% include "dashboard/partials/header.html" %}
+		{% include "dashboard/partials/aside.html" %}
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="row" bis_skin_checked="1">
+					<div class="col-12" bis_skin_checked="1">
+						<div class="page-title-box d-sm-flex align-items-center justify-content-between"
+						bis_skin_checked="1">
+							{% comment %} {% sitetree_breadcrumbs from 'main' template "sitetree/breadcrumbs_bootstrap4.html" %} {% endcomment %}
+						</div>
+					</div>
+				</div>
+
+
+				<div class="container-fluid">
+					{% block content %}
+
+					{% endblock content %}
+					<!-- container-fluid -->
+				</div>
+				<!-- End Page-content -->
+			</div>
+			<!-- end main content-->
+
+			{% include "dashboard/partials/footer.html" %}
+		</div>
+		{% block modals %}{% endblock modals %}
+		<!-- END layout-wrapper -->
+		{% include 'dashboard/partials/javascript.html' %}
+</body>
+
+</html>

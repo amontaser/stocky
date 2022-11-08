@@ -1,0 +1,63 @@
+{% extends "dashboard/layout/base_admin.html" %}
+{% load static i18n %}
+{% load sitetree %}
+
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-header align-items-center d-flex">
+				<h5 class="card-title mb-0 flex-grow-1">{% trans page_title %}</h5>
+
+					<div class="flex-shrink-0" bis_skin_checked="1">
+						<a href="{{ object.get_update_url }}" class="btn btn-primary"><i class="fal fa-pen-square me-2 "></i>{% trans "Edit" %}</a>
+					</div>
+			</div>
+			<div class="card" bis_skin_checked="1">
+				<div class="card-body" bis_skin_checked="1">
+					<h5 class="card-title mb-3">Info</h5>
+					<div class="row g-4">
+
+						<div class="col-auto" bis_skin_checked="1">
+							<div class="avatar-lg" bis_skin_checked="1">
+								<img src="{{object.logo.url}}" alt="user-img"
+									class="img-thumbnail rounded-circle">
+							</div>
+						</div>
+						<div class="col">
+							<div class="table-responsive" bis_skin_checked="1">
+								<table class="table table-borderless mb-0">
+									<tbody>
+										<tr>
+											<th class="ps-0" scope="row">{% trans "Tenant Name" %} :</th>
+											<td class="text-muted">{{ object.name }}</td>
+										</tr>
+										<tr>
+											<th class="ps-0" scope="row">{% trans "Owner" %} :</th>
+											<td class="text-muted">{{ object.owner_id }}</td>
+										</tr>
+										<tr>
+											<th class="ps-0" scope="row">{% trans "Tenant Full Domian" %} :</th>
+											<td class="text-muted">{{ object.domain_url }}</td>
+										</tr>
+										<tr>
+											<th class="ps-0" scope="row">{% trans "Tenant Created At" %} :</th>
+											<td class="text-muted">{{ object.created_at }}</td>
+										</tr>
+
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+
+				</div><!-- end card body -->
+			</div>
+		</div>
+
+	</div>
+	<!--end col-->
+</div>
+{% endblock content%}

@@ -1,0 +1,24 @@
+{% extends "../dashboard/layout/base.html" %}
+{% load static i18n%}
+{% block title %}{% block head_title %}{% endblock head_title %}{% endblock title %}
+
+{% block content %}
+<div class="account-pages my-5 pt-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="mb-4 text-center">
+        <img src="{% static 'dashboard/images/logo/logo.svg' %}" alt="logo" height="50" />
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-6">
+        <div class="card overflow-hidden">
+          <div class="card-body p-4">
+            <div class="p-3">
+              {% block inner %}{% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
